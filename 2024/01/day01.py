@@ -1,28 +1,38 @@
 from resources.leftList import *
 from resources.rightList import *
-from time import sleep
 
-leftList = sorted(list((leftList)))
-rightList = sorted(list((rightList)))
+# Part 1
+def distance(list1, list2):
+    list1 = sorted(list((list1)))
+    list2 = sorted(list((list2)))
 
-leftLength = len(leftList)
-print(f'leftList length = {leftLength}')
-rightLength = len(rightList)
-print(f'rightList length = {rightLength}')
+    leftLength = len(list1)
+    rightLength = len(list2)
+    
+    if leftLength == rightLength:
+        
+        index = 0
+        distanceTotal = 0
+        if index <= leftLength:
+            while index <= leftLength - 1:
+                # print(f'index {index}')
+                leftNum = list1[index]
+                rightNum = list2[index]
+                distance = abs(leftNum - rightNum)
+                # print(distance)
+                distanceTotal += distance
+                index +=1
 
-if leftLength == rightLength:
-    print(f'Both lists are of equal length.')
+        return distanceTotal
+    
+    else:
+        print(f'Lists are not of equal length.')
 
-index = 0
-distanceTotal = 0
-if index <= leftLength:
-    while index <= leftLength - 1:
-        # print(f'index {index}')
-        leftNum = leftList[index]
-        rightNum = rightList[index]
-        distance = abs(leftNum - rightNum)
-        # print(distance)
-        distanceTotal += distance
-        index +=1
 
-print(f'distanceTotal = {distanceTotal}')
+testResults = distance(test_leftList, test_rightList)
+if testResults == 11:
+    print(f'Test passed!')
+    distanceTotal = distance(leftList, rightList)
+    print(f'distanceTotal = {distanceTotal}')
+else: 
+    print(f'Test faiiled!')
